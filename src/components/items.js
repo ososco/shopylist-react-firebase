@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import firebase from "firebase/app";
 import "firebase/database";
 
+import { snapshotToArray } from "../helpers";
+
 import Item from "./item";
 
 var config = {
@@ -58,19 +60,10 @@ class Items extends Component {
           ? itemsRef.child(id).update({ done: false })
           : itemsRef.child(id).update({ done: true })
       );
-
-    // this.setState({
-    //   items: this.state.items.map((e, index) =>
-    //     i === index ? (e = { name: e.name, done: !e.done }) : e
-    //   )
-    // });
   }
 
   deleteItem(id) {
     database.ref("items/" + id).remove();
-    // this.setState({
-    //   items: this.state.items.filter((e, index) => index !== i)
-    // });
   }
 
   deleteAllItems() {
@@ -80,12 +73,6 @@ class Items extends Component {
   handleSubmit(e) {
     e.preventDefault();
     if (e.keyCode === 13) {
-      // this.setState({
-      //   items: [
-      //     ...this.state.items,
-      //     { name: this.capFirst(e.target.value), done: false }
-      //   ]
-      // });
       this.addItem(this.capFirst(e.target.value));
       e.target.value = "";
     }
@@ -144,14 +131,3 @@ class Items extends Component {
 }
 
 export default Items;
-
-function snapshotToArray(snapshot) {
-  var returnArr = [];
-  snapshot.forEach(function(childSnapshot) {
-    var item = childSnapshot.val();
-    item.key = childSnapshot.key;
-
-    returnArr.push(item);
-  });
-  return returnArr;
-}
