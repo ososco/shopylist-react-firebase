@@ -1,6 +1,9 @@
 import React, { Component } from "react";
-import firebase from "firebase/app";
+import firebase from "firebase";
 import "firebase/database";
+import Autosuggest from "react-autosuggest";
+import AutosuggestHighlightMatch from "autosuggest-highlight/match";
+import AutosuggestHighlightParse from "autosuggest-highlight/parse";
 
 import { snapshotToArray } from "../helpers";
 
@@ -22,11 +25,71 @@ if (!firebase.apps.length) {
 const database = firebase.database();
 let itemsRef = database.ref("items/");
 
+const items = [
+  "Bananas 🍌",
+  "Apples 🍎",
+  "Avocado 🥑",
+  "Tomatos 🍅",
+  "Cucumber 🥒",
+  "Eggplants 🍆",
+  "Zucchini",
+  "Milk",
+  "Yogurt",
+  "Meat",
+  "Melon",
+  "Eggs 🥚",
+  "Cini Minis",
+  "Bread"
+];
+
+function escapeRegexCharacters(str) {
+  return str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+function getSuggestions(value) {
+  const escapedValue = escapeRegexCharacters(value.trim());
+
+  if (escapedValue === "") {
+    return [];
+  }
+
+  const regex = new RegExp("^" + escapedValue, "i");
+
+  return items.filter(item => regex.test(item));
+}
+
+function getSuggestionValue(suggestion) {
+  return suggestion;
+}
+
+function renderSuggestion(suggestion, { query }) {
+  const matches = AutosuggestHighlightMatch(suggestion, query);
+  const parts = AutosuggestHighlightParse(suggestion, matches);
+
+  return (
+    <span>
+      {parts.map((part, index) => {
+        const className = part.highlight
+          ? "react-autosuggest__suggestion-match"
+          : null;
+
+        return (
+          <span className={className} key={index}>
+            {part.text}
+          </span>
+        );
+      })}
+    </span>
+  );
+}
+
 class Items extends Component {
   constructor() {
     super();
     this.state = {
-      items: []
+      items: [],
+      value: "",
+      suggestions: []
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -74,7 +137,8 @@ class Items extends Component {
     e.preventDefault();
     if (e.keyCode === 13) {
       this.addItem(this.capFirst(e.target.value));
-      e.target.value = "";
+      this.setState({ value: "" });
+      // e.target.value = "";
     }
   }
 
@@ -82,15 +146,43 @@ class Items extends Component {
     return str[0].toUpperCase() + str.slice(1);
   }
 
+  onChange = (event, { newValue, method }) => {
+    this.setState({
+      value: newValue
+    });
+  };
+
+  onSuggestionsFetchRequested = ({ value }) => {
+    this.setState({
+      suggestions: getSuggestions(value)
+    });
+  };
+
+  onSuggestionsClearRequested = () => {
+    this.setState({
+      suggestions: []
+    });
+  };
+
   render() {
+    const { value, suggestions } = this.state;
+    const inputProps = {
+      placeholder: "Item name...",
+      value,
+      onChange: this.onChange,
+      onKeyUp: this.handleSubmit
+    };
+
     return (
       <main>
         <div className="panel">
-          <input
-            id="item_input"
-            className="item_input"
-            placeholder="Item name..."
-            onKeyUp={this.handleSubmit}
+          <Autosuggest
+            suggestions={suggestions}
+            onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
+            onSuggestionsClearRequested={this.onSuggestionsClearRequested}
+            getSuggestionValue={getSuggestionValue}
+            renderSuggestion={renderSuggestion}
+            inputProps={inputProps}
           />
         </div>
 
