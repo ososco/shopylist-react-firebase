@@ -126,15 +126,15 @@ class Items extends Component {
     }
   }
 
-  capFirst(str) {
-    return str[0].toUpperCase() + str.slice(1);
-  }
-
   onChange = (event, { newValue, method }) => {
     this.setState({
       value: newValue
     });
   };
+
+  capFirst(str) {
+    return str[0].toUpperCase() + str.slice(1);
+  }
 
   onSuggestionsFetchRequested = ({ value }) => {
     this.setState({

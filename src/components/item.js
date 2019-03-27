@@ -7,10 +7,12 @@ class Item extends Component {
 
   render() {
     return (
-      <li className={this.props.done ? "crossed" : ""}>
-        <p onClick={this.props.crossItem}>{this.props.name}</p>
-        <button onClick={this.props.deleteItem} id="deleteBtn" />
-      </li>
+      <div draggable>
+        <li className={this.props.done ? "crossed" : ""}>
+          <p onClick={this.props.crossItem}>{this.props.name}</p>
+          <button onClick={this.props.deleteItem} id="deleteBtn" />
+        </li>
+      </div>
     );
   }
 }

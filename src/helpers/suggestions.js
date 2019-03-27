@@ -32,8 +32,6 @@ export const suggestions = [
   "Eggs 🥚",
   "Cheese 🧀",
   "Spread Cheese 🧀",
-  "",
-  "",
   "Cini Minis 🥣",
   "Bread 🍞",
   "Pita Bread",
