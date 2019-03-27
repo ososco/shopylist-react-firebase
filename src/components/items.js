@@ -27,16 +27,16 @@ let itemsRef = database.ref("items/");
 
 const items = [
   "Bananas 🍌",
-  "Apples 🍎",
+  "Apples 🍎🍏",
   "Avocado 🥑",
   "Tomatos 🍅",
   "Cucumber 🥒",
   "Eggplants 🍆",
   "Zucchini",
-  "Milk",
+  "Milk 🥛",
   "Yogurt",
-  "Meat",
-  "Melon",
+  "Meat 🥩",
+  "Melon 🍈",
   "Eggs 🥚",
   "Cini Minis",
   "Bread"
