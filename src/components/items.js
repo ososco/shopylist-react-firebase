@@ -8,6 +8,7 @@ import AutosuggestHighlightParse from "autosuggest-highlight/parse";
 import { snapshotToArray } from "../helpers";
 
 import Item from "./item";
+import { suggestions } from "../helpers/suggestions.js";
 
 var config = {
   apiKey: "AIzaSyA54lhjIOzHbkKi1rHsiWyVlWQdRhj3kwk",
@@ -25,23 +26,6 @@ if (!firebase.apps.length) {
 const database = firebase.database();
 let itemsRef = database.ref("items/");
 
-const items = [
-  "Bananas 🍌",
-  "Apples 🍎🍏",
-  "Avocado 🥑",
-  "Tomatos 🍅",
-  "Cucumber 🥒",
-  "Eggplants 🍆",
-  "Zucchini",
-  "Milk 🥛",
-  "Yogurt",
-  "Meat 🥩",
-  "Melon 🍈",
-  "Eggs 🥚",
-  "Cini Minis",
-  "Bread"
-];
-
 function escapeRegexCharacters(str) {
   return str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
@@ -55,7 +39,7 @@ function getSuggestions(value) {
 
   const regex = new RegExp("^" + escapedValue, "i");
 
-  return items.filter(item => regex.test(item));
+  return suggestions.filter(item => regex.test(item));
 }
 
 function getSuggestionValue(suggestion) {
