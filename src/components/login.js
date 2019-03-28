@@ -10,6 +10,7 @@ class Login extends Component {
       <div className="login-container">
         <div className="illustration-container">
           <div className="illustration" />
+          <h1 draggable>Shopylist</h1>
         </div>
         <div className="login-form">
           <input

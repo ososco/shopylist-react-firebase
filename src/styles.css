@@ -175,10 +175,24 @@ main {
   align-items: center;
   text-align: center;
   min-height: 100vh;
+  background: rgb(33, 51, 70);
+  background: radial-gradient(
+    circle,
+    rgb(35, 56, 78) 50%,
+    rgb(23, 34, 45) 100%
+  );
+}
+
+.login-container h1 {
+  color: white;
+  font-weight: 700;
+  font-size: 7vh;
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
 }
 
 .illustration-container {
-  zoom: 0.85;
+  zoom: 0.7;
   margin: 2vh;
   padding: 3vh;
 }
@@ -186,16 +200,14 @@ main {
 .illustration {
   background: url("https://cdn4.iconfinder.com/data/icons/ios7-active-2/512/Basket.png");
   background-position: center;
-  background-size: 250px;
-  width: 250px;
-  height: 250px;
+  background-size: 35vh;
+  width: 35vh;
+  height: 35vh;
   background-repeat: no-repeat;
 }
-/* padding: 20px;
-  margin: 0 auto; */
 
 .login-form {
-  margin: 2vh;
+  margin: 5vh;
   padding: 3vh;
   zoom: 0.9;
   border-radius: 5px;
@@ -208,7 +220,10 @@ main {
   border: 1px solid grey;
   padding: 6px 8px;
   font-family: "Open Sans", sans-serif;
-  margin: 8px 10px;
+  margin: 0 0 15px 0;
+  width: 100%;
+  max-width: 500px;
+  box-sizing: border-box;
 }
 
 .login-container input::placeholder {
