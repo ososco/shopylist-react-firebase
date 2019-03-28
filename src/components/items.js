@@ -1,23 +1,16 @@
 import React, { Component } from "react";
 import firebase from "firebase";
-import "firebase/database";
+// import "firebase/database";
+
 import Autosuggest from "react-autosuggest";
 import AutosuggestHighlightMatch from "autosuggest-highlight/match";
 import AutosuggestHighlightParse from "autosuggest-highlight/parse";
 
 import { snapshotToArray } from "../helpers";
+import { config } from "../helpers/config.js";
 
 import Item from "./item";
 import { suggestions } from "../helpers/suggestions.js";
-
-var config = {
-  apiKey: "AIzaSyA54lhjIOzHbkKi1rHsiWyVlWQdRhj3kwk",
-  authDomain: "shopylist-31adb.firebaseapp.com",
-  databaseURL: "https://shopylist-31adb.firebaseio.com",
-  projectId: "shopylist-31adb",
-  storageBucket: "shopylist-31adb.appspot.com",
-  messagingSenderId: "830562930433"
-};
 
 if (!firebase.apps.length) {
   firebase.initializeApp(config);
@@ -148,34 +141,6 @@ class Items extends Component {
     });
   };
 
-  onDragStart = (e, index) => {
-    this.draggedItem = this.state.items[index];
-    e.dataTransfer.effectAllowed = "move";
-    e.dataTransfer.setData("text/html", e.target.parentNode);
-    e.dataTransfer.setDragImage(e.target.parentNode, 20, 20);
-  };
-
-  onDragOver = index => {
-    const draggedOverItem = this.state.items[index];
-
-    // if the item is dragged over itself, ignore
-    if (this.draggedItem === draggedOverItem) {
-      return;
-    }
-
-    // filter out the currently dragged item
-    let items = this.state.items.filter(item => item !== this.draggedItem);
-
-    // add the dragged item after the dragged over item
-    items.splice(index, 0, this.draggedItem);
-
-    this.setState({ items });
-  };
-
-  onDragEnd = () => {
-    this.draggedIdx = null;
-  };
-
   render() {
     const { value, suggestions } = this.state;
     const inputProps = {
@@ -201,24 +166,14 @@ class Items extends Component {
         <div className="item-list-div">
           <ul id="item-list" className="item-list">
             {this.state.items.map((e, i) => (
-              <li
+              <Item
                 key={i}
-                className={e.done ? "crossed" : ""}
-                onDragOver={() => this.onDragOver(i)}
-              >
-                <div
-                  className="drag"
-                  draggable
-                  onDragStart={e => this.onDragStart(e, i)}
-                  onDragEnd={this.onDragEnd}
-                >
-                  <p onClick={() => this.crossItem(e.key)}>{e.name}</p>
-                  <button
-                    onClick={() => this.deleteItem(e.key)}
-                    id="deleteBtn"
-                  />
-                </div>
-              </li>
+                name={e.name}
+                done={e.done}
+                id={e.key}
+                crossItem={() => this.crossItem(e.key)}
+                deleteItem={() => this.deleteItem(e.key)}
+              />
             ))}
           </ul>
         </div>

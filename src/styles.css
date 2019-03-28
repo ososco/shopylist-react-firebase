@@ -75,15 +75,11 @@ main {
   border: 1px solid #efe7e7;
   border-radius: 3px;
   cursor: pointer;
-
-  font-weight: 600;
-}
-
-.drag {
   display: grid;
   grid-template-columns: 1fr 30px;
   justify-content: space-between;
   align-items: center;
+  font-weight: 600;
 }
 
 .item-list p {
@@ -170,4 +166,52 @@ main {
 .react-autosuggest__suggestion-match {
   color: #3290ef;
   font-weight: bold;
+}
+
+.login-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 100vh;
+}
+
+.illustration-container {
+  zoom: 0.85;
+  margin: 2vh;
+  padding: 3vh;
+}
+
+.illustration {
+  background: url("https://cdn4.iconfinder.com/data/icons/ios7-active-2/512/Basket.png");
+  background-position: center;
+  background-size: 250px;
+  width: 250px;
+  height: 250px;
+  background-repeat: no-repeat;
+}
+/* padding: 20px;
+  margin: 0 auto; */
+
+.login-form {
+  margin: 2vh;
+  padding: 3vh;
+  zoom: 0.9;
+  border-radius: 5px;
+}
+
+.login-container input {
+  font-size: 1.5em;
+  border-radius: 5px;
+  box-sizing: border-box;
+  border: 1px solid grey;
+  padding: 6px 8px;
+  font-family: "Open Sans", sans-serif;
+  margin: 8px 10px;
+}
+
+.login-container input::placeholder {
+  font-size: 0.8em;
+  vertical-align: center;
 }
