@@ -74,6 +74,7 @@ main {
 .item-list-div ul {
   list-style-type: none;
   padding: 0;
+  transition: all 0.4s ease-out;
 }
 
 .item-list li {
@@ -90,6 +91,7 @@ main {
   justify-content: space-between;
   align-items: center;
   font-weight: 600;
+  animation: slide-up 0.4s ease;
 }
 
 .item-list p {
@@ -240,4 +242,15 @@ main {
 .login-container input::placeholder {
   font-size: 0.8em;
   vertical-align: center;
+}
+
+@keyframes slide-up {
+  0% {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
