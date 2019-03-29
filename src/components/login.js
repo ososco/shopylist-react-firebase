@@ -13,20 +13,22 @@ class Login extends Component {
           <h1 draggable>Shopylist</h1>
         </div>
         <div className="login-form">
-          <input
-            name="email"
-            type="email"
-            placeholder="Email"
-            onChange={this.props.onChange}
-            onKeyUp={this.props.login}
-          />
-          <input
-            name="password"
-            type="password"
-            placeholder="Password"
-            onChange={this.props.onChange}
-            onKeyUp={this.props.login}
-          />
+          <form autoComplete="on">
+            <input
+              name="email"
+              type="email"
+              placeholder="Email"
+              onChange={this.props.onChange}
+              onKeyUp={this.props.login}
+            />
+            <input
+              name="password"
+              type="password"
+              placeholder="Password"
+              onChange={this.props.onChange}
+              onKeyUp={this.props.login}
+            />
+          </form>
         </div>
       </div>
     );
