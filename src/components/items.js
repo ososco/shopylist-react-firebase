@@ -107,9 +107,9 @@ class Items extends Component {
   }
 
   deleteAllItems() {
-    if (confirm("Do you want to clear all items?")) {
-      itemsRef.remove();
-    }
+    itemsRef.remove();
+    // if (confirm("Do you want to clear all items?")) {
+    // }
   }
 
   handleSubmit(e) {
