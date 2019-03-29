@@ -15,7 +15,7 @@ header h1 {
   margin: 0;
   margin-left: 10px;
   font-weight: 800;
-  zoom: 0.9;
+  zoom: 0.8;
 }
 
 .logo {
@@ -23,6 +23,7 @@ header h1 {
   background-size: 40px;
   background-repeat: no-repeat;
   padding: 20px;
+  zoom: 0.9;
 }
 
 main {
@@ -53,6 +54,7 @@ main {
   color: white;
   font-family: "Open Sans", sans-serif;
   font-weight: 600;
+  cursor: pointer;
 }
 
 .panel {
@@ -75,8 +77,8 @@ main {
 }
 
 .item-list li {
-  font-size: 1em;
-  color: #ff3c41;
+  font-size: 0.9rem;
+  color: rgb(23, 34, 45);
   background-color: #f7f7f7;
   padding: 0 0 0 7px;
   margin: 6px 0;
@@ -107,6 +109,7 @@ main {
   background-size: 20px;
   background-repeat: no-repeat;
   background-position: center;
+  cursor: pointer;
 }
 
 .crossed {

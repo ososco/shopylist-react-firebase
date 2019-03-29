@@ -107,7 +107,9 @@ class Items extends Component {
   }
 
   deleteAllItems() {
-    itemsRef.remove();
+    if (confirm("Do you want to clear all items?")) {
+      itemsRef.remove();
+    }
   }
 
   handleSubmit(e) {
@@ -141,6 +143,11 @@ class Items extends Component {
     });
   };
 
+  onSuggestionSelected = (event, { suggestion }) => {
+    this.addItem(suggestion);
+    this.setState({ value: "" });
+  };
+
   render() {
     const { value, suggestions } = this.state;
     const inputProps = {
@@ -159,6 +166,7 @@ class Items extends Component {
             onSuggestionsClearRequested={this.onSuggestionsClearRequested}
             getSuggestionValue={getSuggestionValue}
             renderSuggestion={renderSuggestion}
+            onSuggestionSelected={this.onSuggestionSelected}
             inputProps={inputProps}
           />
         </div>

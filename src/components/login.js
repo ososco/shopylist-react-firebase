@@ -13,7 +13,7 @@ class Login extends Component {
           <h1 draggable>Shopylist</h1>
         </div>
         <div className="login-form">
-          <form autoComplete="on">
+          <form method="post" autoComplete="on">
             <input
               name="email"
               type="email"
