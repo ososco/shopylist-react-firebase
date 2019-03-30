@@ -114,9 +114,11 @@ main {
   cursor: pointer;
 }
 
-.crossed {
+.crossed p {
   text-decoration: line-through;
   color: #c1c1c1 !important;
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);
 }
 
 .react-autosuggest__container {
