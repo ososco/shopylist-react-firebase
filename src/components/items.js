@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import firebase from "firebase";
-// import "firebase/database";
+import firebase from "firebase/app";
+import "firebase/database";
+import "firebase/auth";
 
 import Autosuggest from "react-autosuggest";
 import AutosuggestHighlightMatch from "autosuggest-highlight/match";
