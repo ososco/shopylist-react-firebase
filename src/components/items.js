@@ -114,7 +114,7 @@ class Items extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    if (e.keyCode === 13) {
+    if (e.keyCode === 13 && e.target.value) {
       this.addItem(this.capFirst(e.target.value));
       this.setState({ value: "" });
       // e.target.value = "";
