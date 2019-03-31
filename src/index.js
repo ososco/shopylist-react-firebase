@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
-import firebase from "firebase";
-// import "firebase/auth";
+import firebase from "firebase/app";
+import "firebase/auth";
 
 import Header from "./components/header";
 import Items from "./components/items";
