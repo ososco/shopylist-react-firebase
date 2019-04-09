@@ -1,6 +1,7 @@
 body {
   margin: 0;
-
+  background: rgb(23, 34, 45);
+  background: radial-gradient(circle, rgb(35, 56, 78) 5%, rgb(23, 34, 45) 100%);
   font-family: "Open Sans", sans-serif;
 }
 
@@ -29,9 +30,6 @@ header h1 {
 main {
   padding: 5px 15px;
   /*   background-color: #06313c; */
-  height: 100vh;
-  background: rgb(23, 34, 45);
-  background: radial-gradient(circle, rgb(35, 56, 78) 5%, rgb(23, 34, 45) 100%);
 }
 
 .stats {
@@ -229,11 +227,12 @@ main {
 }
 
 .login-container input {
-  font-size: 1.5em;
+  font-size: 1.2em;
   border-radius: 5px;
   box-sizing: border-box;
   border: 1px solid grey;
-  padding: 6px 8px;
+  padding: 0.5em 0.7em;
+  line-height: 1.21428571em;
   font-family: "Open Sans", sans-serif;
   margin: 0 0 15px 0;
   width: 100%;
