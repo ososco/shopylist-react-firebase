@@ -113,6 +113,19 @@ class Items extends Component {
     }
   }
 
+  deleteCrossedItems() {
+    if (window.confirm("Do you want to clear all crossed items?")) {
+      let crossed = itemsRef.orderByChild("done").equalTo(true);
+      crossed.once("value", snapshot => {
+        var promises = [];
+        snapshot.forEach(function(child) {
+          promises.push(child.ref.remove());
+        });
+        Promise.all(promises); // this returns a promise that resolves once all deletes are done, or that rejects once one of them fails
+      });
+    }
+  }
+
   handleSubmit(e) {
     e.preventDefault();
     if (e.keyCode === 13 && e.target.value) {
@@ -189,19 +202,28 @@ class Items extends Component {
 
         <div className="stats">
           <p id="entries">Total items: {this.state.items.length}</p>
-          <p id="remaining">
+          {/* <p id="remaining">
             Remaining items:{" "}
             {this.state.items.length -
               this.state.items.filter(e => e.done === true || e.done === "true")
                 .length}
-          </p>
-          <button
-            id="clear_Btn"
-            className="clear_Btn"
-            onClick={this.deleteAllItems}
-          >
-            Clear all
-          </button>
+          </p> */}
+          <div>
+            <button
+              id="clear_Btn"
+              className="clear_Btn"
+              onClick={this.deleteCrossedItems}
+            >
+              Clear crossed
+            </button>
+            <button
+              id="clear_Btn"
+              className="clear_Btn"
+              onClick={this.deleteAllItems}
+            >
+              Clear all
+            </button>
+          </div>
         </div>
       </main>
     );

@@ -41,6 +41,7 @@ export const suggestions = [
   "Oil",
   "Salt 🧂",
   "Black Papper",
+  "Sugar",
   "Chocolate  🍫",
   "Candies 🍬",
   "Sparkling Water",
